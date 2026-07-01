@@ -11,7 +11,7 @@ const AmcPanel = ({ isOpen, onClose }) => {
   const fetchAmcs = async () => {
     setLoading(true);
     try {
-      const res = await axios.get('http://localhost:5000/api/amcs');
+      const res = await axios.get('https://product.tievista.com/api/amcs');
       setAmcs(res.data);
     } catch (err) {
       console.error(err);
@@ -43,7 +43,7 @@ const AmcPanel = ({ isOpen, onClose }) => {
   const handleDelete = async (id) => {
     if(!window.confirm("Are you sure you want to delete this AMC?")) return;
     try {
-      await axios.delete(`http://localhost:5000/api/amcs/${id}`);
+      await axios.delete(`https://product.tievista.com/api/amcs/${id}`);
       fetchAmcs();
     } catch (err) {
       console.error(err);
@@ -55,10 +55,10 @@ const AmcPanel = ({ isOpen, onClose }) => {
     try {
       if (formData.id) {
         // update
-        await axios.put(`http://localhost:5000/api/amcs/${formData.id}`, formData);
+        await axios.put(`https://product.tievista.com/api/amcs/${formData.id}`, formData);
       } else {
         // create
-        await axios.post('http://localhost:5000/api/amcs', formData);
+        await axios.post('https://product.tievista.com/api/amcs', formData);
       }
       setEditingAmc(null);
       fetchAmcs();

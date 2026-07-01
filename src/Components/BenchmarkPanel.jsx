@@ -11,7 +11,7 @@ const BenchmarkPanel = ({ isOpen, onClose }) => {
   const fetchBenchmarks = async () => {
     setLoading(true);
     try {
-      const res = await axios.get('http://localhost:5000/api/benchmarks');
+      const res = await axios.get('https://product.tievista.com/api/benchmarks');
       setBenchmarks(res.data);
     } catch (err) {
       console.error(err);
@@ -42,7 +42,7 @@ const BenchmarkPanel = ({ isOpen, onClose }) => {
   const handleDelete = async (id) => {
     if(!window.confirm("Are you sure you want to delete this Benchmark?")) return;
     try {
-      await axios.delete(`http://localhost:5000/api/benchmarks/${id}`);
+      await axios.delete(`https://product.tievista.com/api/benchmarks/${id}`);
       fetchBenchmarks();
     } catch (err) {
       console.error(err);
@@ -54,10 +54,10 @@ const BenchmarkPanel = ({ isOpen, onClose }) => {
     try {
       if (formData.id) {
         // update
-        await axios.put(`http://localhost:5000/api/benchmarks/${formData.id}`, formData);
+        await axios.put(`https://product.tievista.com/api/benchmarks/${formData.id}`, formData);
       } else {
         // create
-        await axios.post('http://localhost:5000/api/benchmarks', formData);
+        await axios.post('https://product.tievista.com/api/benchmarks', formData);
       }
       setEditingBenchmark(null);
       fetchBenchmarks();

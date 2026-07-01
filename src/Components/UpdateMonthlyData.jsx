@@ -24,7 +24,15 @@ const SECTIONS = [
       { name: 'since_inception', label: 'Since Inception (%)', type: 'number' },
       { name: 'ytm', label: 'YTM (%)', type: 'number' },
       { name: 'mod_year', label: 'Modified Duration', type: 'number' },
-      { name: 'benchmark_return', label: 'Benchmark Return (%)', type: 'number' },
+      { name: 'benchmark_return_sinceinception', label: 'Benchmark SI Return (%)', type: 'number' },
+      { name: 'benchmark_return_1m', label: 'Benchmark 1M Return (%)', type: 'number' },
+      { name: 'benchmark_return_3m', label: 'Benchmark 3M Return (%)', type: 'number' },
+      { name: 'benchmark_return_6m', label: 'Benchmark 6M Return (%)', type: 'number' },
+      { name: 'benchmark_return_1y', label: 'Benchmark 1Y Return (%)', type: 'number' },
+      { name: 'benchmark_return_2y', label: 'Benchmark 2Y Return (%)', type: 'number' },
+      { name: 'benchmark_return_3y', label: 'Benchmark 3Y Return (%)', type: 'number' },
+      { name: 'benchmark_return_4y', label: 'Benchmark 4Y Return (%)', type: 'number' },
+      { name: 'benchmark_return_5y', label: 'Benchmark 5Y Return (%)', type: 'number' },
       { name: 'excess_return', label: 'Excess Return (%)', type: 'number' },
     ]
   },
@@ -156,7 +164,7 @@ const UpdateMonthlyData = ({ isOpen, onClose, monthlyData, onUpdateSuccess }) =>
         });
       });
 
-      await axios.put(`http://localhost:5000/api/update/monthly-data/${monthlyData.product_id}`, payload);
+      await axios.put(`https://product.tievista.com/api/update/monthly-data/${monthlyData.product_id}`, payload);
       onUpdateSuccess();
       onClose();
     } catch (err) {

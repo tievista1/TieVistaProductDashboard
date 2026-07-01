@@ -85,7 +85,7 @@ const UpdateFeeClass = ({ isOpen, onClose, feeClassData, onUpdateSuccess }) => {
         });
       });
 
-      await axios.put(`http://localhost:5000/api/update/fee-classes/${feeClassData.product_id}`, payload);
+      await axios.put(`https://product.tievista.com/api/update/fee-classes/${feeClassData.product_id}`, payload);
       onUpdateSuccess();
       onClose();
     } catch (err) {

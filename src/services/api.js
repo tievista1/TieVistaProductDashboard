@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/api';
+const API_URL = 'https://product.tievista.com/api';
 
 export const uploadPdf = async (file, onProgress) => {
   const formData = new FormData();

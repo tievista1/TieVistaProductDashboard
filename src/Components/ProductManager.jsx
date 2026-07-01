@@ -167,16 +167,14 @@ const ProductManager = () => {
 
   useEffect(() => {
     if (selectedProduct) {
-      axios.get(`http://localhost:5000/api/monthly-data/${selectedProduct.id}`)
+      axios.get(`https://product.tievista.com/api/monthly-data/${selectedProduct.id}`)
         .then(res => {
           setSelectedMonthlyData(res.data);
-          console.log("Monthly Data:", res.data);
         })
         .catch(err => console.error("Failed to fetch monthly data for product", err));
-      axios.get(`http://localhost:5000/api/fee-classes/${selectedProduct.id}`)
+      axios.get(`https://product.tievista.com/api/fee-classes/${selectedProduct.id}`)
         .then(res => {
           setSelectedFeeClasses(res.data);
-          console.log("Fee Classes:", res.data);
         })
         .catch(err => console.error("Failed to fetch fee classes for product", err));
     } else {
@@ -316,7 +314,7 @@ const ProductManager = () => {
     try {
       if (showLoader) setLoading(true);
       const payload = buildFilterPayload();
-      const res = await axios.post('http://localhost:5000/api/filter-products', payload);
+      const res = await axios.post('https://product.tievista.com/api/filter-products', payload);
       setP(res.data);
     } catch (err) {
       console.error("Failed to fetch filtered data", err);
@@ -329,20 +327,20 @@ const ProductManager = () => {
     try {
       setLoading(true);
       // Initial load — fetch all products (empty filter)
-      const res = await axios.post('http://localhost:5000/api/filter-products', {});
+      const res = await axios.post('https://product.tievista.com/api/filter-products', {});
       setP(res.data);
 
-      const mdRes = await axios.get('http://localhost:5000/api/monthly-data');
+      const mdRes = await axios.get('https://product.tievista.com/api/monthly-data');
       setMonthlyData(mdRes.data);
 
-      const amcsRes = await axios.get('http://localhost:5000/api/amcs');
+      const amcsRes = await axios.get('https://product.tievista.com/api/amcs');
       if (amcsRes.data && Array.isArray(amcsRes.data)) {
         const amcNames = Array.from(new Set(amcsRes.data.map(a => a.amc_name).filter(Boolean))).sort();
         setAmcOptions(amcNames);
       }
 
       // Fetch available months/years from monthlydata
-      const reportMonthsRes = await axios.get('http://localhost:5000/api/report-months');
+      const reportMonthsRes = await axios.get('https://product.tievista.com/api/report-months');
       if (reportMonthsRes.data) {
         setMonthOptions(reportMonthsRes.data.months || []);
         setYearOptions(reportMonthsRes.data.years || []);
@@ -434,7 +432,7 @@ const ProductManager = () => {
     fetchDashboardData();
     // Refresh the side panel fee classes
     if (selectedProduct) {
-      axios.get(`http://localhost:5000/api/fee-classes/${selectedProduct.id}`)
+      axios.get(`https://product.tievista.com/api/fee-classes/${selectedProduct.id}`)
         .then(res => setSelectedFeeClasses(res.data))
         .catch(err => console.error("Failed to refresh fee classes", err));
     }
@@ -444,7 +442,7 @@ const ProductManager = () => {
     fetchDashboardData();
     // Refresh the side panel monthly data
     if (selectedProduct) {
-      axios.get(`http://localhost:5000/api/monthly-data/${selectedProduct.id}`)
+      axios.get(`https://product.tievista.com/api/monthly-data/${selectedProduct.id}`)
         .then(res => setSelectedMonthlyData(res.data))
         .catch(err => console.error("Failed to refresh monthly data", err));
     }
@@ -453,7 +451,7 @@ const ProductManager = () => {
   const executeDelete = async () => {
     if (!productToDelete) return;
     try {
-      await axios.delete(`http://localhost:5000/api/product/${productToDelete.id}`);
+      await axios.delete(`https://product.tievista.com/api/product/${productToDelete.id}`);
       setDeleteConfirmOpen(false);
       setProductToDelete(null);
       fetchDashboardData();
@@ -1286,7 +1284,15 @@ const ProductManager = () => {
                       <td className="p-3 border-b border-[#E0DDD6] text-right text-gray-700">{md.since_inception ? md.since_inception + '%' : '—'} </td>
                       <td className="p-3 border-b border-[#E0DDD6] text-right text-gray-700">{md.ytm ? md.ytm + '%' : '—'}</td>
                       <td className="p-3 border-b border-[#E0DDD6] text-right text-gray-700">{md.mod_year ? md.mod_year : '—'}</td>
-                      <td className="p-3 border-b border-[#E0DDD6] text-right text-gray-700">{md.benchmark_return ? md.benchmark_return + '%' : '—'}</td>
+                      <td className="p-3 border-b border-[#E0DDD6] text-right text-gray-700">{md.benchmark_return_sinceinception ? md.benchmark_return_sinceinception + '%' : '—'}</td>
+                      <td className="p-3 border-b border-[#E0DDD6] text-right text-gray-700">{md.benchmark_return_1m ? md.benchmark_return_1m + '%' : '—'}</td>
+                      <td className="p-3 border-b border-[#E0DDD6] text-right text-gray-700">{md.benchmark_return_3m ? md.benchmark_return_3m + '%' : '—'}</td>
+                      <td className="p-3 border-b border-[#E0DDD6] text-right text-gray-700">{md.benchmark_return_6m ? md.benchmark_return_6m + '%' : '—'}</td>
+                      <td className="p-3 border-b border-[#E0DDD6] text-right text-gray-700">{md.benchmark_return_1y ? md.benchmark_return_1y + '%' : '—'}</td>
+                      <td className="p-3 border-b border-[#E0DDD6] text-right text-gray-700">{md.benchmark_return_2y ? md.benchmark_return_2y + '%' : '—'}</td>
+                      <td className="p-3 border-b border-[#E0DDD6] text-right text-gray-700">{md.benchmark_return_3y ? md.benchmark_return_3y + '%' : '—'}</td>
+                      <td className="p-3 border-b border-[#E0DDD6] text-right text-gray-700">{md.benchmark_return_4y ? md.benchmark_return_4y + '%' : '—'}</td>
+                      <td className="p-3 border-b border-[#E0DDD6] text-right text-gray-700">{md.benchmark_return_5y ? md.benchmark_return_5y + '%' : '—'}</td>
                       <td className="p-3 border-b border-[#E0DDD6] text-right text-gray-700">{md.sharpe_ratio || '—'}</td>
                       <td className="p-3 border-b border-[#E0DDD6] text-right text-gray-700">{md.std_dev || '—'}</td>
                       <td className="p-3 border-b border-[#E0DDD6] text-right text-gray-700">{md.up_capture || '—'}</td>
@@ -1676,6 +1682,54 @@ const ProductManager = () => {
                 <div className="bg-white rounded-lg border border-gray-200 border-t-[3px] border-t-[#D4AF37] p-4 text-center shadow-sm">
                   <div className="text-[10px] uppercase font-bold tracking-wider text-black mb-2">Mod(Y)</div>
                   <div className="text-xl font-bold text-green-600">{(selectedMonthlyData[0]?.mod_year) || 0}</div>
+                </div>
+              </div>
+            </div>
+
+            {/* MONTHLY PERFORMANCE/BENCHMARK */}
+            <div className="mb-10">
+              <div className="flex items-center gap-3 mb-4">
+                <h3 className="text-[13px] font-serif font-bold uppercase tracking-wider text-black">Benchmark Performance</h3>
+                <button className="text-[#C9981A] hover:text-[#b38617] transition" title="Edit" onClick={(e) => { e.stopPropagation(); if (selectedMonthlyData.length > 0) handleEditMonthlyData(selectedMonthlyData[0]); }}>
+                  <IconEdit size={16} />
+                </button>
+              </div>
+              <div className="grid grid-cols-4 gap-3">
+                <div className="bg-white rounded-lg border border-gray-200 border-t-[3px] border-t-[#D4AF37] p-4 text-center shadow-sm">
+                  <div className="text-[10px] uppercase font-bold tracking-wider text-black mb-2">1M</div>
+                  <div className="text-xl font-bold text-green-600">{selectedMonthlyData[0]?.benchmark_return_1m}%</div>
+                </div>
+                <div className="bg-white rounded-lg border border-gray-200 border-t-[3px] border-t-[#D4AF37] p-4 text-center shadow-sm">
+                  <div className="text-[10px] uppercase font-bold tracking-wider text-black mb-2">3M</div>
+                  <div className="text-xl font-bold text-green-600">{selectedMonthlyData[0]?.benchmark_return_3m}%</div>
+                </div>
+                <div className="bg-white rounded-lg border border-gray-200 border-t-[3px] border-t-[#D4AF37] p-4 text-center shadow-sm">
+                  <div className="text-[10px] uppercase font-bold tracking-wider text-black mb-2">6M</div>
+                  <div className="text-xl font-bold text-green-600">{selectedMonthlyData[0]?.benchmark_return_6m}%</div>
+                </div>
+                <div className="bg-white rounded-lg border border-gray-200 border-t-[3px] border-t-[#D4AF37] p-4 text-center shadow-sm">
+                  <div className="text-[10px] uppercase font-bold tracking-wider text-black mb-2">1Y</div>
+                  <div className="text-xl font-bold text-green-600">{selectedMonthlyData[0]?.benchmark_return_1y}%</div>
+                </div>
+                <div className="bg-white rounded-lg border border-gray-200 border-t-[3px] border-t-[#D4AF37] p-4 text-center shadow-sm">
+                  <div className="text-[10px] uppercase font-bold tracking-wider text-black mb-2">2Y</div>
+                  <div className="text-xl font-bold text-green-600">{selectedMonthlyData[0]?.benchmark_return_2y}%</div>
+                </div>
+                <div className="bg-white rounded-lg border border-gray-200 border-t-[3px] border-t-[#D4AF37] p-4 text-center shadow-sm">
+                  <div className="text-[10px] uppercase font-bold tracking-wider text-black mb-2">3Y</div>
+                  <div className="text-xl font-bold text-green-600">{selectedMonthlyData[0]?.benchmark_return_3y}%</div>
+                </div>
+                <div className="bg-white rounded-lg border border-gray-200 border-t-[3px] border-t-[#D4AF37] p-4 text-center shadow-sm">
+                  <div className="text-[10px] uppercase font-bold tracking-wider text-black mb-2">4Y</div>
+                  <div className="text-xl font-bold text-green-600">{selectedMonthlyData[0]?.benchmark_return_4y}%</div>
+                </div>
+                <div className="bg-white rounded-lg border border-gray-200 border-t-[3px] border-t-[#D4AF37] p-4 text-center shadow-sm">
+                  <div className="text-[10px] uppercase font-bold tracking-wider text-black mb-2">5Y</div>
+                  <div className="text-xl font-bold text-green-600">{selectedMonthlyData[0]?.benchmark_return_5y}%</div>
+                </div>
+                <div className="bg-white rounded-lg border border-gray-200 border-t-[3px] border-t-[#D4AF37] p-4 text-center shadow-sm">
+                  <div className="text-[10px] uppercase font-bold tracking-wider text-black mb-2">Benchmark Sinceinception</div>
+                  <div className="text-xl font-bold text-green-600">{selectedMonthlyData[0]?.benchmark_return_sinceinception}%</div>
                 </div>
               </div>
             </div>

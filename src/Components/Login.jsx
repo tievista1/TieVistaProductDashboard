@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
 
-const API = 'http://localhost:5000/api';
+const API = 'https://product.tievista.com/api';
 
 const Login = ({ onLogin }) => {
   const { register, handleSubmit, getValues, formState: { errors } } = useForm();

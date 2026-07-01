@@ -63,7 +63,15 @@ const MONTHLY_SECTIONS = [
       { name: 'since_inception', label: 'Since Inception (%)', type: 'number' },
       { name: 'ytm', label: 'YTM (%)', type: 'number' },
       { name: 'mod_year', label: 'Modified Duration', type: 'number' },
-      { name: 'benchmark_return', label: 'Benchmark Return (%)', type: 'number' },
+      { name: 'benchmark_return_sinceinception', label: 'Benchmark SI Return (%)', type: 'number' },
+      { name: 'benchmark_return_1m', label: 'Benchmark 1M Return (%)', type: 'number' },
+      { name: 'benchmark_return_3m', label: 'Benchmark 3M Return (%)', type: 'number' },
+      { name: 'benchmark_return_6m', label: 'Benchmark 6M Return (%)', type: 'number' },
+      { name: 'benchmark_return_1y', label: 'Benchmark 1Y Return (%)', type: 'number' },
+      { name: 'benchmark_return_2y', label: 'Benchmark 2Y Return (%)', type: 'number' },
+      { name: 'benchmark_return_3y', label: 'Benchmark 3Y Return (%)', type: 'number' },
+      { name: 'benchmark_return_4y', label: 'Benchmark 4Y Return (%)', type: 'number' },
+      { name: 'benchmark_return_5y', label: 'Benchmark 5Y Return (%)', type: 'number' },
       { name: 'excess_return', label: 'Excess Return (%)', type: 'number' },
     ]
   },
@@ -177,7 +185,7 @@ const AddAllDashboardData = ({ isOpen, onClose, onSuccess }) => {
 
   useEffect(() => {
     if (isOpen) {
-      axios.get('http://localhost:5000/api/amcs')
+      axios.get('https://product.tievista.com/api/amcs')
         .then(res => {
           if (res.data && Array.isArray(res.data)) {
             const amcNames = Array.from(new Set(res.data.map(a => a.amc_name).filter(Boolean))).sort();
@@ -186,7 +194,7 @@ const AddAllDashboardData = ({ isOpen, onClose, onSuccess }) => {
         })
         .catch(err => console.error("Failed to fetch AMCs", err));
 
-      axios.get('http://localhost:5000/api/benchmarks')
+      axios.get('https://product.tievista.com/api/benchmarks')
         .then(res => {
           if (res.data && Array.isArray(res.data)) {
             const benchNames = Array.from(new Set(res.data.map(b => b.benchmark_name).filter(Boolean))).sort();
@@ -239,7 +247,7 @@ const AddAllDashboardData = ({ isOpen, onClose, onSuccess }) => {
         feeClasses: feeClassData
       };
 
-      await axios.post('http://localhost:5000/api/add-product', payload);
+      await axios.post('https://product.tievista.com/api/add-product', payload);
       onSuccess();
       onClose();
       reset();

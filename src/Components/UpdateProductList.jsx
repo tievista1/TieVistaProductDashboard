@@ -56,7 +56,7 @@ const UpdateProductList = ({ isOpen, onClose, product, onUpdateSuccess }) => {
   useEffect(() => {
     if (isOpen) {
       setIsAmcsLoading(true);
-      axios.get('http://localhost:5000/api/amcs')
+      axios.get('https://product.tievista.com/api/amcs')
         .then(res => {
           if (res.data && Array.isArray(res.data)) {
             const amcNames = Array.from(new Set(res.data.map(a => a.amc_name).filter(Boolean))).sort();
@@ -67,7 +67,7 @@ const UpdateProductList = ({ isOpen, onClose, product, onUpdateSuccess }) => {
         .finally(() => setIsAmcsLoading(false));
 
       setIsBenchmarksLoading(true);
-      axios.get('http://localhost:5000/api/benchmarks')
+      axios.get('https://product.tievista.com/api/benchmarks')
         .then(res => {
           if (res.data && Array.isArray(res.data)) {
             const benchNames = Array.from(new Set(res.data.map(b => b.benchmark_name).filter(Boolean))).sort();
@@ -139,7 +139,7 @@ const UpdateProductList = ({ isOpen, onClose, product, onUpdateSuccess }) => {
         }
       });
 
-      await axios.put(`http://localhost:5000/api/update/product/${product.id}`, payload);
+      await axios.put(`https://product.tievista.com/api/update/product/${product.id}`, payload);
       onUpdateSuccess();
       onClose();
     } catch (err) {
