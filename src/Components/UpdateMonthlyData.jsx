@@ -42,6 +42,8 @@ const SECTIONS = [
       { name: 'alpha_1y', label: 'Alpha 1Y', type: 'number' },
       { name: 'alpha_3y', label: 'Alpha 3Y', type: 'number' },
       { name: 'beta', label: 'Beta', type: 'number' },
+      { name: 'pe_ratio', label: 'PE Ratio', type: 'number' },
+      { name: 'pb_ratio', label: 'PB Ratio', type: 'number' },
       { name: 'sharpe_ratio', label: 'Sharpe Ratio', type: 'number' },
       { name: 'sortino_ratio', label: 'Sortino Ratio', type: 'number' },
       { name: 'information_ratio', label: 'Information Ratio', type: 'number' },
