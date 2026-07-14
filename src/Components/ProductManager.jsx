@@ -1696,18 +1696,6 @@ const ProductManager = () => {
               </div>
               <div className="grid grid-cols-4 gap-3">
                 <div className="bg-white rounded-lg border border-gray-200 border-t-[3px] border-t-[#D4AF37] p-4 text-center shadow-sm">
-                  <div className="text-[10px] uppercase font-bold tracking-wider text-black mb-2">1M</div>
-                  <div className="text-xl font-bold text-green-600">{selectedMonthlyData[0]?.benchmark_return_1m}%</div>
-                </div>
-                <div className="bg-white rounded-lg border border-gray-200 border-t-[3px] border-t-[#D4AF37] p-4 text-center shadow-sm">
-                  <div className="text-[10px] uppercase font-bold tracking-wider text-black mb-2">3M</div>
-                  <div className="text-xl font-bold text-green-600">{selectedMonthlyData[0]?.benchmark_return_3m}%</div>
-                </div>
-                <div className="bg-white rounded-lg border border-gray-200 border-t-[3px] border-t-[#D4AF37] p-4 text-center shadow-sm">
-                  <div className="text-[10px] uppercase font-bold tracking-wider text-black mb-2">6M</div>
-                  <div className="text-xl font-bold text-green-600">{selectedMonthlyData[0]?.benchmark_return_6m}%</div>
-                </div>
-                <div className="bg-white rounded-lg border border-gray-200 border-t-[3px] border-t-[#D4AF37] p-4 text-center shadow-sm">
                   <div className="text-[10px] uppercase font-bold tracking-wider text-black mb-2">1Y</div>
                   <div className="text-xl font-bold text-green-600">{selectedMonthlyData[0]?.benchmark_return_1y}%</div>
                 </div>
@@ -1720,15 +1708,23 @@ const ProductManager = () => {
                   <div className="text-xl font-bold text-green-600">{selectedMonthlyData[0]?.benchmark_return_3y}%</div>
                 </div>
                 <div className="bg-white rounded-lg border border-gray-200 border-t-[3px] border-t-[#D4AF37] p-4 text-center shadow-sm">
-                  <div className="text-[10px] uppercase font-bold tracking-wider text-black mb-2">4Y</div>
-                  <div className="text-xl font-bold text-green-600">{selectedMonthlyData[0]?.benchmark_return_4y}%</div>
-                </div>
-                <div className="bg-white rounded-lg border border-gray-200 border-t-[3px] border-t-[#D4AF37] p-4 text-center shadow-sm">
                   <div className="text-[10px] uppercase font-bold tracking-wider text-black mb-2">5Y</div>
                   <div className="text-xl font-bold text-green-600">{selectedMonthlyData[0]?.benchmark_return_5y}%</div>
                 </div>
                 <div className="bg-white rounded-lg border border-gray-200 border-t-[3px] border-t-[#D4AF37] p-4 text-center shadow-sm">
-                  <div className="text-[10px] uppercase font-bold tracking-wider text-black mb-2">Benchmark Sinceinception</div>
+                  <div className="text-[10px] uppercase font-bold tracking-wider text-black mb-2">1M</div>
+                  <div className="text-xl font-bold text-green-600">{selectedMonthlyData[0]?.benchmark_return_1m}%</div>
+                </div>
+                <div className="bg-white rounded-lg border border-gray-200 border-t-[3px] border-t-[#D4AF37] p-4 text-center shadow-sm">
+                  <div className="text-[10px] uppercase font-bold tracking-wider text-black mb-2">3M</div>
+                  <div className="text-xl font-bold text-green-600">{selectedMonthlyData[0]?.benchmark_return_3m}%</div>
+                </div>
+                <div className="bg-white rounded-lg border border-gray-200 border-t-[3px] border-t-[#D4AF37] p-4 text-center shadow-sm">
+                  <div className="text-[10px] uppercase font-bold tracking-wider text-black mb-2">6M</div>
+                  <div className="text-xl font-bold text-green-600">{selectedMonthlyData[0]?.benchmark_return_6m}%</div>
+                </div>
+                <div className="bg-white rounded-lg border border-gray-200 border-t-[3px] border-t-[#D4AF37] p-4 text-center shadow-sm">
+                  <div className="text-[10px] uppercase font-bold tracking-wider text-black mb-2"> SinceInception</div>
                   <div className="text-xl font-bold text-green-600">{selectedMonthlyData[0]?.benchmark_return_sinceinception}%</div>
                 </div>
               </div>
@@ -1801,11 +1797,11 @@ const ProductManager = () => {
                 </div>
                 <div className="bg-white rounded-lg border border-gray-200 p-3 text-center shadow-sm">
                   <div className="text-[10px] uppercase font-bold tracking-wider text-black mb-1">PE RATIO</div>
-                  <div className="text-lg font-bold text-black">{(selectedMonthlyData[0]?.pe_ratio) > 0 ? '+' : ''}{selectedMonthlyData[0]?.pe_ratio}</div>
+                  <div className="text-lg font-bold text-black">{selectedMonthlyData[0]?.pe_ratio}</div>
                 </div>
                 <div className="bg-white rounded-lg border border-gray-200 p-3 text-center shadow-sm">
                   <div className="text-[10px] uppercase font-bold tracking-wider text-black mb-1">PB RATIO</div>
-                  <div className="text-lg font-bold text-black">{(selectedMonthlyData[0]?.pb_ratio) > 0 ? '+' : ''}{selectedMonthlyData[0]?.pb_ratio}</div>
+                  <div className="text-lg font-bold text-black">{selectedMonthlyData[0]?.pb_ratio}</div>
                 </div>
               </div>
             </div>
